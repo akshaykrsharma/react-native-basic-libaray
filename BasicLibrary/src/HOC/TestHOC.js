@@ -24,7 +24,7 @@ export const demoFunction = function(Compo) {
 
 		_handleAppStateChange = function(nextAppState) {
 			if (this.state.appState && this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-				this.checkLocationPermission();
+				console.warn('current state=' + this.state.appState);
 			}
 			this.setState({ appState: nextAppState });
 		};
