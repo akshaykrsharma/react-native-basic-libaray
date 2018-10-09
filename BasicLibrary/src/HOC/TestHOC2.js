@@ -1,13 +1,13 @@
 import React from 'react';
 
-export function DisableBack(Comp, prop) {
+export function DisableBack(Comp) {
 	return class extends React.Component {
 		constructor(props) {
 			super(props);
-			this.state = { name: 'akshay' };
+			this.state = { fromHoc2: 'akshay' };
 		}
 		render() {
-			return <Comp {...prop} {...this.state} />;
+			return <Comp {...this.props} {...this.state} />;
 		}
 	};
 }

@@ -48,4 +48,4 @@ const styles = StyleSheet.create({
 		marginBottom: 5
 	}
 });
-export default demoFunction(App);
+export default DisableBack(demoFunction(App));
