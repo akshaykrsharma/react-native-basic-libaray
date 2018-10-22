@@ -7,15 +7,30 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Modal } from 'react-native';
+import { StyleSheet, View, Modal } from 'react-native';
 import { DisableBack } from './src/HOC/TestHOC2';
 import { demoFunction } from './src/HOC/TestHOC';
 import LoaderViewer from './src/Base/LoaderViewer';
+import CounterApp from './src/Redux/CounterApp';
 
-const instructions = Platform.select({
-	ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-	android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu'
-});
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+const initialState = {
+	counter: 0
+};
+
+const reducer = (state = initialState, action) => {
+	switch (action.type) {
+		case 'INCREASE_COUNTER':
+			return { counter: state.counter + 1 };
+		case 'DECREASE_COUNTER':
+			return { counter: state.counter - 1 };
+	}
+	return state;
+};
+
+const store = createStore(reducer);
 
 class App extends Component {
 	constructor(props) {
@@ -26,16 +41,17 @@ class App extends Component {
 		}, 3000);
 	}
 	render() {
-		console.warn('-->', JSON.stringify(this.props, null, 2));
+		//console.warn('-->', JSON.stringify(this.props, null, 2));
+
 		return (
-			<View style={styles.container}>
-				<Text style={styles.welcome}>Welcome to React Native!</Text>
-				<Text style={styles.instructions}>To get started, edit App.js</Text>
-				<Text style={styles.instructions}>{instructions}</Text>
-				<Modal transparent={false} visible={this.state.showSpinner}>
-					<LoaderViewer />
-				</Modal>
-			</View>
+			<Provider store={store}>
+				<View style={styles.container}>
+					<CounterApp />
+					<Modal transparent={false} visible={this.state.showSpinner}>
+						<LoaderViewer />
+					</Modal>
+				</View>
+			</Provider>
 		);
 	}
 }
