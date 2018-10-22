@@ -15,6 +15,7 @@ import CounterApp from './src/Redux/CounterApp';
 
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import Header from './src/Components/Header';
 
 const initialState = {
 	counter: 0
@@ -38,18 +39,34 @@ class App extends Component {
 		this.state = { showSpinner: true };
 		setTimeout(() => {
 			this.setState({ showSpinner: false });
-		}, 3000);
+		}, 1500);
 	}
+
+	leftClick = () => {
+		console.warn('Left Button is Clicked');
+	};
+	rightClick = () => {
+		console.warn('Right Button is Clicked');
+	};
 	render() {
 		//console.warn('-->', JSON.stringify(this.props, null, 2));
 
 		return (
 			<Provider store={store}>
-				<View style={styles.container}>
-					<CounterApp />
-					<Modal transparent={false} visible={this.state.showSpinner}>
-						<LoaderViewer />
-					</Modal>
+				<View>
+					<Header
+						title={'HOME SCREEN'}
+						leftButton={'Back'}
+						rightButton={'Cancel'}
+						onLeftPress={this.leftClick}
+						onRightPress={this.rightClick}
+					/>
+					<View style={styles.container}>
+						<CounterApp />
+						<Modal transparent={false} visible={this.state.showSpinner}>
+							<LoaderViewer />
+						</Modal>
+					</View>
 				</View>
 			</Provider>
 		);
@@ -62,16 +79,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: '#F5FCFF'
-	},
-	welcome: {
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10
-	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5
 	}
 });
 export default DisableBack(demoFunction(App));
