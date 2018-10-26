@@ -61,8 +61,9 @@ class App extends Component {
 						onLeftPress={this.leftClick}
 						onRightPress={this.rightClick}
 					/>
+					<CounterApp />
+
 					<View style={styles.container}>
-						<CounterApp />
 						<Modal transparent={false} visible={this.state.showSpinner}>
 							<LoaderViewer />
 						</Modal>

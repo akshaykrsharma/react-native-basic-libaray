@@ -45,7 +45,7 @@ const styles = {
 	},
 	headerTextStyle: {
 		color: 'white',
-		...Fonts.italicBoldFont(16)
+		...Fonts.regularFont(16)
 	},
 	leftStyle: {},
 	leftTextStyle: {
