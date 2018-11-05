@@ -38,10 +38,13 @@ const styles = {
 		flexDirection: 'row',
 		padding: 10,
 		backgroundColor: '#FF5722',
-		height: 50,
+		height: 60,
 		alignItems: 'center',
-		shadowColor: 'rgba(0,0,0,0.3)',
-		shadowOffset: { width: 0, height: 1 }
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.2,
+		elevation: 2,
+		position: 'relative'
 	},
 	headerTextStyle: {
 		color: 'white',

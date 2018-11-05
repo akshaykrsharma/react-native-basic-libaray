@@ -6,6 +6,8 @@ import Utils from '../Components/Utils';
 import { TextField } from 'react-native-material-textfield';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import InputTextLayout from '../Components/InputTextLayout';
+import Header from '../Components/Header';
+import List from '../Components/List';
 
 class CounterApp extends Component {
 	constructor(props) {
@@ -28,9 +30,10 @@ class CounterApp extends Component {
 	// };
 
 	onPress = () => {
-		console.warn('btn is Clicked ' + this.state.password);
+		console.warn('btn is Clicked ');
 		const errorMsg = 'please enter a valid password';
 		this.setState({ errorMsg });
+		//navigate('Home');
 	};
 
 	onAccessoryPress() {
@@ -52,6 +55,12 @@ class CounterApp extends Component {
 	}
 
 	render() {
+		return (
+			<View>
+				<List />
+			</View>
+		);
+
 		return (
 			<ScrollView>
 				<View>
