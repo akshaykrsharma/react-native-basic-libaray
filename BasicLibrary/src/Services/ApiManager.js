@@ -48,5 +48,7 @@ export default class APIManager {
 				//cb = (isSuccessful, error);
 				callBackFx(false, error);
 			});
+
+		return mPromise;
 	};
 }

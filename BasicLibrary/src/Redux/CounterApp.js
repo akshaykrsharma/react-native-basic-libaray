@@ -8,6 +8,10 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import InputTextLayout from '../Components/InputTextLayout';
 import Header from '../Components/Header';
 import List from '../Components/List';
+import ApiManager from '../Services/ApiManager';
+import EndPoints from '../Services/EndPoints';
+
+import { loginUser } from './actions/UserActions';
 
 class CounterApp extends Component {
 	constructor(props) {
@@ -30,9 +34,16 @@ class CounterApp extends Component {
 	// };
 
 	onPress = () => {
-		console.warn('btn is Clicked ');
 		const errorMsg = 'please enter a valid password';
-		this.setState({ errorMsg });
+		console.warn('btn is Clicked ');
+		this.props.loginUser({ Email: 'abc@gmail.com', Password: '****' });
+		// ApiManager.getResponse(EndPoints.CUSTOMER.GET_REQUEST, 'GET', {}, (isSuccessful, response) => {
+		// 	this.setState({ showSpinner: false });
+		// 	if (isSuccessful) {
+		// 		console.warn('response=', JSON.stringify(response, null, 2));
+		// 	} else console.warn(JSON.stringify(response));
+		// });
+		//this.setState({ errorMsg });
 		//navigate('Home');
 	};
 
@@ -55,12 +66,6 @@ class CounterApp extends Component {
 	}
 
 	render() {
-		return (
-			<View>
-				<List />
-			</View>
-		);
-
 		return (
 			<ScrollView>
 				<View>
@@ -104,12 +109,14 @@ class CounterApp extends Component {
 
 function mapStateToProps(state) {
 	return {
-		counter: state.counter
+		counter: state.counter,
+		user: state.data
 	};
 }
 
 function dispatchToProps(dispatch) {
 	return {
+		loginUser: args => dispatch(loginUser(args)),
 		increaseCounter: () => dispatch({ type: 'INCREASE_COUNTER' }),
 		decreaseCounter: () => dispatch({ type: 'DECREASE_COUNTER' })
 	};
