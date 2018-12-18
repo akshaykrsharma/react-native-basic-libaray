@@ -17,6 +17,7 @@ function* workerLoginUser(action) {
 		yield put({ type: USER_LOGIN_SUCCESS, data: response.data });
 	} catch (e) {
 		console.warn(e);
+		yield put({ type: USER_ERROR, data: e });
 	}
 }
 

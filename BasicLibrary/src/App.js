@@ -52,8 +52,6 @@ class App extends Component {
 		console.warn('Right Button is Clicked');
 	};
 	render() {
-		//console.warn('-->', JSON.stringify(this.props, null, 2));
-
 		return (
 			<Provider store={store}>
 				<View>

@@ -5,7 +5,11 @@ import Button from '../Components/Button';
 import Utils from '../Components/Utils';
 import { TextField } from 'react-native-material-textfield';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import InputTextLayout from '../Components/InputTextLayout';
+import InputTextLayout from '../Components/TextFields/InputTextLayout';
+import InputTextImage from '../Components/TextFields/InputTextImage';
+
+import image from '../res/images';
+
 import Header from '../Components/Header';
 import List from '../Components/List';
 import ApiManager from '../Services/ApiManager';
@@ -79,9 +83,39 @@ class CounterApp extends Component {
 						</TouchableOpacity>
 					</View>
 
-					<InputTextLayout
+					<InputTextImage
 						label="User Name"
+						placeholder="User Name"
+						image={image.icon_lock}
+						isPassword={true}
 						title="It will be your login id"
+						onChangeText={username => {
+							this.setState({ username });
+						}}
+					/>
+
+					<InputTextImage
+						label="Password"
+						placeholder="Password"
+						image={image.icon_message}
+						onChangeText={username => {
+							this.setState({ username });
+						}}
+					/>
+
+					<InputTextImage
+						label="User Name"
+						placeholder="User Name"
+						image={image.icon_message}
+						isPassword={true}
+						onChangeText={username => {
+							this.setState({ username });
+						}}
+					/>
+
+					<InputTextImage
+						isPassword={true}
+						placeholder="User Name"
 						onChangeText={username => {
 							this.setState({ username });
 						}}
@@ -89,7 +123,6 @@ class CounterApp extends Component {
 					<InputTextLayout
 						isPassword={true}
 						label="Password"
-						title="make it hard to crack"
 						onChangeText={password => {
 							this.setState({ password });
 						}}
@@ -108,9 +141,11 @@ class CounterApp extends Component {
 }
 
 function mapStateToProps(state) {
+	console.warn('state=', JSON.stringify(state));
+
 	return {
 		counter: state.counter,
-		user: state.data
+		data: state.UserReducer.data
 	};
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import Utils from './Utils';
+import Utils from '../Utils';
 
 export default class InputTextLayout extends Component {
 	constructor(props) {
