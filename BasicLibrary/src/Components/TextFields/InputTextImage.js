@@ -55,11 +55,9 @@ export default class InputTextImage extends Component {
 					{this.props.image && <View style={{ height: '50%', margin: 5, width: 1, backgroundColor: '#d0d0d0' }} />}
 					<TextInput
 						{...this.props}
-						placeholder={this.props.placeholder}
 						placeholderTextColor={labelTextStyle}
 						onChangeText={this.props.onChangeText}
 						secureTextEntry={this.props.isPassword && this.state.secureTextEntry}
-						//keyboardType={this.state.secureTextEntry ? 'visible-password' : undefined}
 						style={Utils.styleMerger(inputContainerStyle, this.props.inputContainerStyle)}
 					/>
 					<View

@@ -16,13 +16,21 @@ import ApiManager from '../Services/ApiManager';
 import EndPoints from '../Services/EndPoints';
 
 import { loginUser } from './actions/UserActions';
+import MainComponent from '../Base/MainComponent';
 
-class CounterApp extends Component {
+class CounterApp extends MainComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
 			errorMsg: null
 		};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (!!nextProps.data) {
+			console.warn('LoginSuccessful:' + JSON.stringify(nextProps.data, null, 2));
+			this.setState({ showLoading: false });
+		}
 	}
 
 	// state = {
@@ -40,7 +48,8 @@ class CounterApp extends Component {
 	onPress = () => {
 		const errorMsg = 'please enter a valid password';
 		console.warn('btn is Clicked ');
-		this.props.loginUser({ Email: 'abc@gmail.com', Password: '****' });
+		this.setState({ showLoading: true });
+		this.props.loginUser({ email: this.state.username, password: this.state.password });
 		// ApiManager.getResponse(EndPoints.CUSTOMER.GET_REQUEST, 'GET', {}, (isSuccessful, response) => {
 		// 	this.setState({ showSpinner: false });
 		// 	if (isSuccessful) {
@@ -84,49 +93,31 @@ class CounterApp extends Component {
 					</View>
 
 					<InputTextImage
-						label="User Name"
 						placeholder="User Name"
 						image={image.icon_lock}
-						isPassword={true}
-						title="It will be your login id"
+						keyboardType={'email-address'}
 						onChangeText={username => {
 							this.setState({ username });
 						}}
 					/>
 
 					<InputTextImage
-						label="Password"
 						placeholder="Password"
 						image={image.icon_message}
-						onChangeText={username => {
-							this.setState({ username });
-						}}
-					/>
-
-					<InputTextImage
-						label="User Name"
-						placeholder="User Name"
-						image={image.icon_message}
+						keyboardType={'decimal-pad'}
 						isPassword={true}
-						onChangeText={username => {
-							this.setState({ username });
-						}}
-					/>
-
-					<InputTextImage
-						isPassword={true}
-						placeholder="User Name"
-						onChangeText={username => {
-							this.setState({ username });
-						}}
-					/>
-					<InputTextLayout
-						isPassword={true}
-						label="Password"
 						onChangeText={password => {
 							this.setState({ password });
 						}}
 					/>
+					{/* <InputTextLayout
+						isPassword={true}
+						label="Password"
+						title="make it hard to crack"
+						onChangeText={password => {
+							this.setState({ password });
+						}}
+					/> */}
 
 					<Button
 						title={'SUBMIT'}
@@ -134,6 +125,8 @@ class CounterApp extends Component {
 						containerStyle={{ marginTop: 30, width: '80%' }}
 						myStyle={{ color: 'white' }}
 					/>
+
+					{this.renderSpinner()}
 				</View>
 			</ScrollView>
 		);

@@ -11,12 +11,14 @@ function* workerLoginUser(action) {
 	console.warn('watcher', action);
 
 	try {
-		const { Email, Password } = action;
-		const response = yield UserManager.apiCallLoginUser({ Email, Password });
+		const { email, password } = action;
+		console.warn('action', JSON.stringify(action, null, 2));
+
+		const response = yield UserManager.apiCallLoginUser({ email, password });
 		console.warn('Response=', response.data);
 		yield put({ type: USER_LOGIN_SUCCESS, data: response.data });
 	} catch (e) {
-		console.warn(e);
+		console.error('error', e);
 		yield put({ type: USER_ERROR, data: e });
 	}
 }

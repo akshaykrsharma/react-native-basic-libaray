@@ -6,6 +6,7 @@ export default class EndPoints {
 
 	static CUSTOMER = {
 		GET_REQUEST: '/api/music_albums',
+		LOGIN_REQUEST: '/api/user/login',
 		POST_REQUEST: '/post'
 	};
 
