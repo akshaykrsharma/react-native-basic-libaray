@@ -23,7 +23,8 @@ class CounterApp extends MainComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			errorMsg: null
+			errorMsg: null,
+			selectedIndex: 0
 		};
 	}
 
@@ -81,16 +82,103 @@ class CounterApp extends MainComponent {
 
 	onTabSelection = function(index) {
 		console.warn('index=', index);
+		this.setState({ selectedIndex: index });
+	};
+
+	renderLoginScreen = function() {
+		return (
+			<View>
+				<InputTextImage
+					placeholder="User Name"
+					image={image.icon_lock}
+					keyboardType={'email-address'}
+					onChangeText={username => {
+						this.setState({ username });
+					}}
+				/>
+
+				<InputTextImage
+					placeholder="Password"
+					image={image.icon_message}
+					keyboardType={'decimal-pad'}
+					isPassword={true}
+					onChangeText={password => {
+						this.setState({ password });
+					}}
+				/>
+				{/* <InputTextLayout
+		isPassword={true}
+		label="Password"
+		title="make it hard to crack"
+		onChangeText={password => {
+			this.setState({ password });
+		}}
+	/> */}
+
+				<Button
+					title={'SUBMIT'}
+					onPress={this.onPress}
+					containerStyle={{ marginTop: 30, width: '80%' }}
+					myStyle={{ color: 'white' }}
+				/>
+			</View>
+		);
+	};
+
+	renderSignUpScreen = function() {
+		return (
+			<View>
+				<InputTextImage
+					placeholder="First Name"
+					image={image.icon_lock}
+					//keyboardType={'email-address'}
+					onChangeText={firstname => {
+						this.setState({ firstname });
+					}}
+				/>
+				<InputTextImage
+					placeholder="Last Name"
+					image={image.icon_lock}
+					//keyboardType={'email-address'}
+					onChangeText={lastname => {
+						this.setState({ lastname });
+					}}
+				/>
+				<InputTextImage
+					placeholder="User Name"
+					image={image.icon_lock}
+					keyboardType={'email-address'}
+					onChangeText={username => {
+						this.setState({ username });
+					}}
+				/>
+				<InputTextImage
+					placeholder="Password"
+					image={image.icon_message}
+					keyboardType={'decimal-pad'}
+					isPassword={true}
+					onChangeText={password => {
+						this.setState({ password });
+					}}
+				/>
+				<Button
+					title={'SUBMIT'}
+					onPress={this.onPress}
+					containerStyle={{ marginTop: 30, width: '80%' }}
+					myStyle={{ color: 'white' }}
+				/>
+			</View>
+		);
 	};
 
 	render() {
-		const data = ['Tab 1', 'Tab 2', 'Tab 3', 'TAB 4'];
+		const data = ['LOG IN', 'SIGN UP'];
 		return (
 			<ScrollView>
 				<View>
 					<TabBar
 						data={data}
-						onTabSelection={this.onTabSelection}
+						onTabSelection={index => this.onTabSelection(index)}
 						selectedContainerStyle={{
 							borderColor: 'silver'
 							//borderBottomWidth: 1
@@ -101,7 +189,7 @@ class CounterApp extends MainComponent {
 						}}
 						unSelectedTextStyle={{ color: 'gray' }}
 					/>
-					<View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+					{/* <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
 						<TouchableOpacity onPress={() => this.props.increaseCounter()}>
 							<Text style={{ fontSize: 20, padding: 10 }}>INCREASE</Text>
 						</TouchableOpacity>
@@ -109,41 +197,9 @@ class CounterApp extends MainComponent {
 						<TouchableOpacity onPress={() => this.props.decreaseCounter()}>
 							<Text style={{ fontSize: 20, padding: 10 }}>DECREASE</Text>
 						</TouchableOpacity>
-					</View>
+					</View> */}
 
-					<InputTextImage
-						placeholder="User Name"
-						image={image.icon_lock}
-						keyboardType={'email-address'}
-						onChangeText={username => {
-							this.setState({ username });
-						}}
-					/>
-
-					<InputTextImage
-						placeholder="Password"
-						image={image.icon_message}
-						keyboardType={'decimal-pad'}
-						isPassword={true}
-						onChangeText={password => {
-							this.setState({ password });
-						}}
-					/>
-					{/* <InputTextLayout
-						isPassword={true}
-						label="Password"
-						title="make it hard to crack"
-						onChangeText={password => {
-							this.setState({ password });
-						}}
-					/> */}
-
-					<Button
-						title={'SUBMIT'}
-						onPress={this.onPress}
-						containerStyle={{ marginTop: 30, width: '80%' }}
-						myStyle={{ color: 'white' }}
-					/>
+					{this.state.selectedIndex == 0 ? this.renderLoginScreen() : this.renderSignUpScreen()}
 
 					{this.renderSpinner()}
 				</View>
