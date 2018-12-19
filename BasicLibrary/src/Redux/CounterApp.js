@@ -17,6 +17,7 @@ import EndPoints from '../Services/EndPoints';
 
 import { loginUser } from './actions/UserActions';
 import MainComponent from '../Base/MainComponent';
+import TabBar from '../Components/Tab/TabBar';
 
 class CounterApp extends MainComponent {
 	constructor(props) {
@@ -78,10 +79,15 @@ class CounterApp extends MainComponent {
 		);
 	}
 
+	onTabSelection = function(index) {
+		console.warn('index=', index);
+	};
+
 	render() {
 		return (
 			<ScrollView>
 				<View>
+					<TabBar onTabSelection={this.onTabSelection} />
 					<View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
 						<TouchableOpacity onPress={() => this.props.increaseCounter()}>
 							<Text style={{ fontSize: 20, padding: 10 }}>INCREASE</Text>
