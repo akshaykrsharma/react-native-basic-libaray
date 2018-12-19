@@ -2,20 +2,24 @@
 
 import { call, put, take, fork } from 'redux-saga/effects';
 import { USER_LOGIN, USER_LOGIN_SUCCESS } from '../types';
-import ApiManager from '../Services/ApiManager';
-import EndPoints from '../Services/EndPoints';
 import { UserManager } from '../../Services';
 
 // ****************
 // WORKERS
 // ****************
 function* workerLoginUser(action) {
-	const { Email, Password } = action.loginMeta;
+	console.warn('watcher', action);
+
 	try {
-		const response = yield call(UserManager.loginUser, { Email, Password });
-		yield put({ type: USER_LOGIN_SUCCESS, user: response });
+		const { email, password } = action;
+		console.warn('action', JSON.stringify(action, null, 2));
+
+		const response = yield UserManager.apiCallLoginUser({ email, password });
+		console.warn('Response=', response.data);
+		yield put({ type: USER_LOGIN_SUCCESS, data: response.data });
 	} catch (e) {
-		action.errorhandler(e.response);
+		console.error('error', e);
+		yield put({ type: USER_ERROR, data: e });
 	}
 }
 
@@ -31,6 +35,5 @@ const watcherLoginUser = function*() {
 };
 
 module.exports = {
-	watcherLoginUser,
-	watcherRegisterUser
+	watcherLoginUser
 };

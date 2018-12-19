@@ -1,7 +1,8 @@
 import APIManager from './ApiManager';
 import EndPoints from './EndPoints';
 export default class UserManager {
-	static loginUser(block, params) {
-		return APIManager.getResponse(EndPoints.USER.LOGIN, 'GET', params, block);
+	static apiCallLoginUser(params) {
+		console.warn('params', JSON.stringify(params, null, 2));
+		return APIManager.createPromise(EndPoints.CUSTOMER.LOGIN_REQUEST, 'POST', params);
 	}
 }

@@ -5,16 +5,33 @@ import Button from '../Components/Button';
 import Utils from '../Components/Utils';
 import { TextField } from 'react-native-material-textfield';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import InputTextLayout from '../Components/InputTextLayout';
+import InputTextLayout from '../Components/TextFields/InputTextLayout';
+import InputTextImage from '../Components/TextFields/InputTextImage';
+
+import image from '../res/images';
+
 import Header from '../Components/Header';
 import List from '../Components/List';
+import ApiManager from '../Services/ApiManager';
+import EndPoints from '../Services/EndPoints';
 
-class CounterApp extends Component {
+import { loginUser } from './actions/UserActions';
+import MainComponent from '../Base/MainComponent';
+import TabBar from '../Components/Tab/TabBar';
+
+class CounterApp extends MainComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
 			errorMsg: null
 		};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (!!nextProps.data) {
+			console.warn('LoginSuccessful:' + JSON.stringify(nextProps.data, null, 2));
+			this.setState({ showLoading: false });
+		}
 	}
 
 	// state = {
@@ -30,9 +47,17 @@ class CounterApp extends Component {
 	// };
 
 	onPress = () => {
-		console.warn('btn is Clicked ');
 		const errorMsg = 'please enter a valid password';
-		this.setState({ errorMsg });
+		console.warn('btn is Clicked ');
+		this.setState({ showLoading: true });
+		this.props.loginUser({ email: this.state.username, password: this.state.password });
+		// ApiManager.getResponse(EndPoints.CUSTOMER.GET_REQUEST, 'GET', {}, (isSuccessful, response) => {
+		// 	this.setState({ showSpinner: false });
+		// 	if (isSuccessful) {
+		// 		console.warn('response=', JSON.stringify(response, null, 2));
+		// 	} else console.warn(JSON.stringify(response));
+		// });
+		//this.setState({ errorMsg });
 		//navigate('Home');
 	};
 
@@ -54,16 +79,28 @@ class CounterApp extends Component {
 		);
 	}
 
-	render() {
-		return (
-			<View>
-				<List />
-			</View>
-		);
+	onTabSelection = function(index) {
+		console.warn('index=', index);
+	};
 
+	render() {
+		const data = ['Tab 1', 'Tab 2', 'Tab 3', 'TAB 4'];
 		return (
 			<ScrollView>
 				<View>
+					<TabBar
+						data={data}
+						onTabSelection={this.onTabSelection}
+						selectedContainerStyle={{
+							borderColor: 'silver'
+							//borderBottomWidth: 1
+						}}
+						unSelectedContainerStyle={{ backgroundColor: 'white' }}
+						selectedTextStyle={{
+							color: 'black'
+						}}
+						unSelectedTextStyle={{ color: 'gray' }}
+					/>
 					<View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
 						<TouchableOpacity onPress={() => this.props.increaseCounter()}>
 							<Text style={{ fontSize: 20, padding: 10 }}>INCREASE</Text>
@@ -74,21 +111,32 @@ class CounterApp extends Component {
 						</TouchableOpacity>
 					</View>
 
-					<InputTextLayout
-						label="User Name"
-						title="It will be your login id"
+					<InputTextImage
+						placeholder="User Name"
+						image={image.icon_lock}
+						keyboardType={'email-address'}
 						onChangeText={username => {
 							this.setState({ username });
 						}}
 					/>
-					<InputTextLayout
+
+					<InputTextImage
+						placeholder="Password"
+						image={image.icon_message}
+						keyboardType={'decimal-pad'}
+						isPassword={true}
+						onChangeText={password => {
+							this.setState({ password });
+						}}
+					/>
+					{/* <InputTextLayout
 						isPassword={true}
 						label="Password"
 						title="make it hard to crack"
 						onChangeText={password => {
 							this.setState({ password });
 						}}
-					/>
+					/> */}
 
 					<Button
 						title={'SUBMIT'}
@@ -96,6 +144,8 @@ class CounterApp extends Component {
 						containerStyle={{ marginTop: 30, width: '80%' }}
 						myStyle={{ color: 'white' }}
 					/>
+
+					{this.renderSpinner()}
 				</View>
 			</ScrollView>
 		);
@@ -103,13 +153,17 @@ class CounterApp extends Component {
 }
 
 function mapStateToProps(state) {
+	console.warn('state=', JSON.stringify(state));
+
 	return {
-		counter: state.counter
+		counter: state.counter,
+		data: state.UserReducer.data
 	};
 }
 
 function dispatchToProps(dispatch) {
 	return {
+		loginUser: args => dispatch(loginUser(args)),
 		increaseCounter: () => dispatch({ type: 'INCREASE_COUNTER' }),
 		decreaseCounter: () => dispatch({ type: 'DECREASE_COUNTER' })
 	};

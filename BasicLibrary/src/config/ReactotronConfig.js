@@ -1,8 +1,10 @@
+'use strict';
+
 import Reactotron from 'reactotron-react-native';
 import sagaPlugin from 'reactotron-redux-saga';
 import apisaucePlugin from 'reactotron-apisauce';
 
-Reactotron.configure({ name: 'FutureApp' })
+Reactotron.configure({ name: 'BasicLibrary' })
 	.useReactNative()
 	.use(apisaucePlugin())
 	.use(sagaPlugin());

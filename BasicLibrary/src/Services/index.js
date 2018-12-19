@@ -1,7 +1,5 @@
-import ApiManager from './ApiManager';
-import EndPoints from './EndPoints';
+import UserManager from './UserManager';
 
-module.export = {
-	ApiManager,
-	EndPoints
+module.exports = {
+	UserManager
 };
