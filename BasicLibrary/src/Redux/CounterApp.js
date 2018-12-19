@@ -84,10 +84,23 @@ class CounterApp extends MainComponent {
 	};
 
 	render() {
+		const data = ['Tab 1', 'Tab 2', 'Tab 3', 'TAB 4'];
 		return (
 			<ScrollView>
 				<View>
-					<TabBar onTabSelection={this.onTabSelection} />
+					<TabBar
+						data={data}
+						onTabSelection={this.onTabSelection}
+						selectedContainerStyle={{
+							borderColor: 'silver'
+							//borderBottomWidth: 1
+						}}
+						unSelectedContainerStyle={{ backgroundColor: 'white' }}
+						selectedTextStyle={{
+							color: 'black'
+						}}
+						unSelectedTextStyle={{ color: 'gray' }}
+					/>
 					<View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
 						<TouchableOpacity onPress={() => this.props.increaseCounter()}>
 							<Text style={{ fontSize: 20, padding: 10 }}>INCREASE</Text>
