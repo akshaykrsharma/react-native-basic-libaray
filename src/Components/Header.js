@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Platform } from 'react-native';
 
 import Fonts from '../res/theme/Fonts';
+import Utils from './Utils';
 
 export default class Header extends Component {
 	onLeftPress = () => {
@@ -38,7 +39,8 @@ const styles = {
 		flexDirection: 'row',
 		padding: 10,
 		backgroundColor: '#FF5722',
-		height: 60,
+		height: Utils.isIphoneX() ? 88 : 64,
+		paddingTop: Platform.OS == 'android' ? 0 : Utils.isIphoneX() ? 44 : 20,
 		alignItems: 'center',
 		shadowColor: '#000',
 		shadowOffset: { width: 0, height: 2 },

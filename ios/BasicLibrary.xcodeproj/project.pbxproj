@@ -46,10 +46,6 @@
 		5FEB5337938E4016BD9BC967 /* libLottie.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DB100CC6A41B4278A7415A2C /* libLottie.a */; };
 		621F43602E7D4BD6A4D9E679 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8EE5AE4472AC4CD896C450F4 /* Feather.ttf */; };
 		7C9C89305E16462AAD163E6C /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 619A20E2E45042BF97EB7823 /* AntDesign.ttf */; };
-		7DA3AB7D21CDFE4300F4118E /* NotoSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DA3AB3C21CDFB5000F4118E /* NotoSerif-Bold.ttf */; };
-		7DA3AB7E21CDFE4600F4118E /* NotoSerif-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DA3AB3A21CDFB4B00F4118E /* NotoSerif-BoldItalic.ttf */; };
-		7DA3AB7F21CDFE4900F4118E /* NotoSerif-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DA3AB3D21CDFB5200F4118E /* NotoSerif-Italic.ttf */; };
-		7DA3AB8021CDFE4C00F4118E /* NotoSerif-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DA3AB3F21CDFB5700F4118E /* NotoSerif-Regular.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8676CCD4B8F34EF990E6E8DA /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8212CFF55D0D4A9A9E9F3FDC /* Ionicons.ttf */; };
 		928E59F7E76F4AF18F007E7C /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F90198B580C44D781FFD556 /* libRNVectorIcons.a */; };
@@ -424,12 +420,6 @@
 		6F90198B580C44D781FFD556 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7CFDB4B291404FFF9F01EB6D /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		7DA3AB3A21CDFB4B00F4118E /* NotoSerif-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerif-BoldItalic.ttf"; sourceTree = "<group>"; };
-		7DA3AB3B21CDFB4E00F4118E /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
-		7DA3AB3C21CDFB5000F4118E /* NotoSerif-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerif-Bold.ttf"; sourceTree = "<group>"; };
-		7DA3AB3D21CDFB5200F4118E /* NotoSerif-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerif-Italic.ttf"; sourceTree = "<group>"; };
-		7DA3AB3E21CDFB5400F4118E /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
-		7DA3AB3F21CDFB5700F4118E /* NotoSerif-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSerif-Regular.ttf"; sourceTree = "<group>"; };
 		8212CFF55D0D4A9A9E9F3FDC /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		829F8A3A0C324DC395661FBB /* Lottie.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Lottie.xcodeproj; path = "../node_modules/lottie-ios/Lottie.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -610,7 +600,6 @@
 		13B07FAE1A68108700A75B9A /* BasicLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				7DA3AB3421CDFA4E00F4118E /* SupportingFiles */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -692,27 +681,6 @@
 				7D1133EF216CA75900D24738 /* libLottie.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		7DA3AB3421CDFA4E00F4118E /* SupportingFiles */ = {
-			isa = PBXGroup;
-			children = (
-				7DA3AB3521CDFA4E00F4118E /* Fonts */,
-			);
-			path = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		7DA3AB3521CDFA4E00F4118E /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				7DA3AB3E21CDFB5400F4118E /* MaterialCommunityIcons.ttf */,
-				7DA3AB3B21CDFB4E00F4118E /* MaterialIcons.ttf */,
-				7DA3AB3C21CDFB5000F4118E /* NotoSerif-Bold.ttf */,
-				7DA3AB3A21CDFB4B00F4118E /* NotoSerif-BoldItalic.ttf */,
-				7DA3AB3D21CDFB5200F4118E /* NotoSerif-Italic.ttf */,
-				7DA3AB3F21CDFB5700F4118E /* NotoSerif-Regular.ttf */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		7DD0546821CE2B80002C1C21 /* Products */ = {
@@ -1304,12 +1272,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DA3AB7F21CDFE4900F4118E /* NotoSerif-Italic.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				7DA3AB7E21CDFE4600F4118E /* NotoSerif-BoldItalic.ttf in Resources */,
-				7DA3AB7D21CDFE4300F4118E /* NotoSerif-Bold.ttf in Resources */,
-				7DA3AB8021CDFE4C00F4118E /* NotoSerif-Regular.ttf in Resources */,
 				7C9C89305E16462AAD163E6C /* AntDesign.ttf in Resources */,
 				03906C6E2FF6478A97831822 /* Entypo.ttf in Resources */,
 				A25A6CCE8FA746448A1C85CC /* EvilIcons.ttf in Resources */,
@@ -1372,7 +1336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
