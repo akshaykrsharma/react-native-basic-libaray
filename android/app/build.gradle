@@ -98,7 +98,7 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         applicationId "com.basiclibrary"
-        minSdkVersion 19
+        minSdkVersion 16
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
@@ -138,7 +138,7 @@ android {
 }
 
 dependencies {
-    compile project(':lottie-react-native')
+    implementation project(':lottie-react-native')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation 'com.facebook.react:react-native:+'
