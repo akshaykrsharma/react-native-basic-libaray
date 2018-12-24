@@ -10,7 +10,11 @@ class Button extends Component {
 				style={Utils.styleMerger(styles.buttonStyle, this.props.containerStyle)}
 				onPress={this.props.onPress}
 			>
-				<Text style={Utils.styleMerger(styles.buttonTitleStyle, this.props.myStyle)}>{this.props.title}</Text>
+				{this.props.children ? (
+					this.props.children
+				) : (
+					<Text style={Utils.styleMerger(styles.buttonTitleStyle, this.props.myStyle)}>{this.props.title}</Text>
+				)}
 			</TouchableOpacity>
 		);
 	}
@@ -25,10 +29,10 @@ const styles = StyleSheet.create({
 		padding: 10,
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderRadius: 25,
+		borderRadius: 2,
 		shadowColor: '#000000',
 		shadowOffset: { width: 0, height: 5 },
-		backgroundColor: '#00b0ff'
+		backgroundColor: 'rgb(93, 189, 95)'
 	},
 	buttonTitleStyle: {
 		color: 'rgba(255,255,255,1)',
