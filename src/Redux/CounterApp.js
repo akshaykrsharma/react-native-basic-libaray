@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Modal, Alert, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import Button from '../Components/Button';
 import Utils from '../Components/Utils';
@@ -7,7 +7,6 @@ import { TextField } from 'react-native-material-textfield';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import InputTextLayout from '../Components/TextFields/InputTextLayout';
 import InputTextImage from '../Components/TextFields/InputTextImage';
-
 import image from '../res/images';
 
 import Header from '../Components/Header';
@@ -18,53 +17,46 @@ import EndPoints from '../Services/EndPoints';
 import { loginUser } from './actions/UserActions';
 import MainComponent from '../Base/MainComponent';
 import TabBar from '../Components/Tab/TabBar';
+import LoaderViewer from '../Base/LoaderViewer';
 
-class CounterApp extends MainComponent {
+class CounterApp extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			errorMsg: null,
 			selectedIndex: 0
 		};
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (!!nextProps.data) {
-			console.warn('LoginSuccessful:' + JSON.stringify(nextProps.data, null, 2));
-			this.setState({ showLoading: false });
+		const { data, error, isCompleted } = nextProps.user;
+
+		if (error) {
+			setTimeout(() => {
+				Alert.alert('Error:', JSON.stringify(data, null, 2));
+			}, 100);
+		}
+		if (!error && isCompleted) {
+			//Navigate to Next Screen.
+			this.props.navigation.navigate('Home');
 		}
 	}
 
-	// state = {
-	// 	counter: 0
-	// };
-
-	// increaseCounter = () => {
-	// 	this.setState({ counter: this.state.counter + 1 });
-	// };
-
-	// decreaseCounter = () => {
-	// 	this.setState({ counter: this.state.counter - 1 });
-	// };
+	renderSpinner() {
+		const { isFetching } = this.props.user;
+		return (
+			isFetching && (
+				<Modal transparent={true} visible={isFetching}>
+					<LoaderViewer />
+				</Modal>
+			)
+		);
+	}
 
 	onPress = () => {
-		const errorMsg = 'please enter a valid password';
-		console.warn('btn is Clicked ');
-		this.setState({ showLoading: true });
 		this.props.loginUser({ email: this.state.username, password: this.state.password });
-		// ApiManager.getResponse(EndPoints.CUSTOMER.GET_REQUEST, 'GET', {}, (isSuccessful, response) => {
-		// 	this.setState({ showSpinner: false });
-		// 	if (isSuccessful) {
-		// 		console.warn('response=', JSON.stringify(response, null, 2));
-		// 	} else console.warn(JSON.stringify(response));
-		// });
-		//this.setState({ errorMsg });
-		//navigate('Home');
 	};
 
-	onAccessoryPress() {
-		console.warn('asdfasdf');
-	}
+	onAccessoryPress() {}
 
 	renderPasswordAccessory() {
 		let name = true ? 'visibility' : 'visibility-off';
@@ -81,7 +73,6 @@ class CounterApp extends MainComponent {
 	}
 
 	onTabSelection = function(index) {
-		console.warn('index=', index);
 		this.setState({ selectedIndex: index });
 	};
 
@@ -100,20 +91,11 @@ class CounterApp extends MainComponent {
 				<InputTextImage
 					placeholder="Password"
 					image={image.icon_message}
-					keyboardType={'decimal-pad'}
 					isPassword={true}
 					onChangeText={password => {
 						this.setState({ password });
 					}}
 				/>
-				{/* <InputTextLayout
-		isPassword={true}
-		label="Password"
-		title="make it hard to crack"
-		onChangeText={password => {
-			this.setState({ password });
-		}}
-	/> */}
 
 				<Button
 					title={'SUBMIT'}
@@ -174,7 +156,7 @@ class CounterApp extends MainComponent {
 	render() {
 		const data = ['LOG IN', 'SIGN UP'];
 		return (
-			<ScrollView>
+			<ScrollView style={{ backgroundColor: 'white' }}>
 				<View>
 					<TabBar
 						data={data}
@@ -189,18 +171,7 @@ class CounterApp extends MainComponent {
 						}}
 						unSelectedTextStyle={{ color: 'gray' }}
 					/>
-					{/* <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
-						<TouchableOpacity onPress={() => this.props.increaseCounter()}>
-							<Text style={{ fontSize: 20, padding: 10 }}>INCREASE</Text>
-						</TouchableOpacity>
-						<Text style={{ fontSize: 20, padding: 10 }}>{this.props.counter}</Text>
-						<TouchableOpacity onPress={() => this.props.decreaseCounter()}>
-							<Text style={{ fontSize: 20, padding: 10 }}>DECREASE</Text>
-						</TouchableOpacity>
-					</View> */}
-
 					{this.state.selectedIndex == 0 ? this.renderLoginScreen() : this.renderSignUpScreen()}
-
 					{this.renderSpinner()}
 				</View>
 			</ScrollView>
@@ -209,11 +180,9 @@ class CounterApp extends MainComponent {
 }
 
 function mapStateToProps(state) {
-	console.warn('state=', JSON.stringify(state));
-
 	return {
 		counter: state.counter,
-		data: state.UserReducer.data
+		user: state.UserReducer
 	};
 }
 

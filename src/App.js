@@ -53,24 +53,22 @@ class App extends Component {
 	};
 	render() {
 		return (
-			<Provider store={store}>
-				<View>
-					<Header
-						title={'HOME SCREEN'}
-						leftButton={'Back'}
-						rightButton={'Cancel'}
-						onLeftPress={this.leftClick}
-						onRightPress={this.rightClick}
-					/>
-					<CounterApp />
+			<View style={{ backgroundColor: 'white' }}>
+				<Header
+					title={'HOME SCREEN'}
+					leftButton={'Back'}
+					rightButton={'Cancel'}
+					onLeftPress={this.leftClick}
+					onRightPress={this.rightClick}
+				/>
+				<CounterApp navigation={this.props.navigation} />
 
-					<View style={styles.container}>
-						<Modal transparent={false} visible={this.state.showSpinner}>
-							<LoaderViewer />
-						</Modal>
-					</View>
+				<View style={styles.container}>
+					<Modal transparent={false} visible={this.state.showSpinner}>
+						<LoaderViewer />
+					</Modal>
 				</View>
-			</Provider>
+			</View>
 		);
 	}
 }
@@ -83,4 +81,4 @@ const styles = StyleSheet.create({
 		backgroundColor: '#F5FCFF'
 	}
 });
-export default DisableBack(demoFunction(App));
+export default App;
