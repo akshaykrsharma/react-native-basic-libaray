@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //const baseURL = 'https://rallycoding.herokuapp.com';
-const baseURL = 'https://desolate-mesa-48874.herokuapp.com/';
+const baseURL = 'https://ywonksstaging.herokuapp.com/api/v1';
 const API = axios.create({ baseURL });
 
 import { PropTypes } from 'prop-types';

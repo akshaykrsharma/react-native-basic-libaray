@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Header from '../Components/Header';
+import Button from '../Components/Button';
 
 export default class Home extends Component {
 	constructor(props) {
@@ -10,9 +11,16 @@ export default class Home extends Component {
 
 	render() {
 		return (
-			<View style={{ backgroundColor: 'red', flex: 1 }}>
+			<View style={{ backgroundColor: 'white', flex: 1 }}>
 				<Header title={'=HOME='} />
-				<Text> Home </Text>
+
+				<Button
+					onPress={() => {
+						this.props.navigation.goBack();
+					}}
+				>
+					<Text> Go Back </Text>
+				</Button>
 			</View>
 		);
 	}

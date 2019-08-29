@@ -1,18 +1,20 @@
-import { StackNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation';
-
 import Home from '../Screen/Home';
 import CounterApp from '../Redux/CounterApp';
+import App from '../App';
 
-const AppNavigation = createStackNavigator(
+const stackNavigator = createStackNavigator(
 	{
-		Home: { screen: Home },
-		Home2: { screen: Home }
+		App: {
+			screen: App
+		},
+		Home: {
+			screen: Home
+		}
 	},
 	{
-		headerMode: 'none',
-		initialRouteName: 'Home'
+		headerMode: 'none'
 	}
 );
 
-export default AppNavigation;
+export default stackNavigator;

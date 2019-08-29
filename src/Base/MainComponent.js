@@ -11,7 +11,7 @@ export default class MainComponent extends Component {
 	renderSpinner() {
 		return (
 			this.state.showLoading && (
-				<Modal transparent={false} visible={this.state.showLoading}>
+				<Modal transparent={true} visible={this.state.showLoading}>
 					<LoaderViewer />
 				</Modal>
 			)
